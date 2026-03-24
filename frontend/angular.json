@@ -56,19 +56,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "price-optimization-frontend:build"
+            "buildTarget": "price-optimization-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "price-optimization-frontend:build:production"
+              "buildTarget": "price-optimization-frontend:build:production"
             },
             "development": {
-              "browserTarget": "price-optimization-frontend:build:development"
+              "buildTarget": "price-optimization-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "04e58f38-75e0-4fdc-911d-b56afed63944"
   }
 }

@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartConfiguration, Chart } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { ApiService } from '@app/core/services/api.service';
 
 @Component({
   selector: 'app-demand-forecast',
   standalone: true,
-  imports: [CommonModule, BaseChartDirective],
+  imports: [CommonModule, NgChartsModule],
   template: `
     <div class="demand-forecast-container">
       <div class="header">
@@ -40,7 +40,7 @@ import { ApiService } from '@app/core/services/api.service';
                 <tr *ngFor="let item of forecasts">
                   <td>{{ item.product_name }}</td>
                   <td>{{ item.category }}</td>
-                  <td>${{ item.selling_price }}</td>
+                  <td>{{ item.selling_price }}</td>
                   <td>{{ item.units_sold }}</td>
                   <td>{{ item.stock_available }}</td>
                   <td>

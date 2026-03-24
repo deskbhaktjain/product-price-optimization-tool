@@ -14,7 +14,7 @@ from pricing_utils import (
 )
 
 # Initialize Flask app
-app = Flask(__name__)
+app = Flask(__name__, instance_path=os.path.join(os.path.dirname(__file__), 'instance'))
 app.config.from_object(config[os.getenv('FLASK_ENV', 'development')])
 
 # Enable CORS

@@ -54,8 +54,8 @@ import { AuthService } from '@app/core/services/auth.service';
             <tr *ngFor="let product of products">
               <td>{{ product.name }}</td>
               <td>{{ product.category }}</td>
-              <td>${{ product.cost_price }}</td>
-              <td>${{ product.selling_price }}</td>
+              <td>{{ product.cost_price | currency }}</td>
+              <td>{{ product.selling_price | currency }}</td>
               <td>{{ product.description | slice: 0: 50 }}...</td>
               <td>{{ product.stock_available }}</td>
               <td>{{ product.units_sold }}</td>
