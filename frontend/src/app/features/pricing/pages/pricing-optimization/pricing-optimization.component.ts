@@ -124,7 +124,7 @@ import { ApiService } from '@app/core/services/api.service';
     .chart-section,
     .table-section {
       background: var(--card-background);
-      padding: var(--spacing-2xl);
+      padding: var(--spacing-lg) var(--spacing-xl);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-color);
@@ -145,15 +145,15 @@ import { ApiService } from '@app/core/services/api.service';
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: var(--spacing-2xl);
+      margin-bottom: var(--spacing-lg);
     }
 
     .chart-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--spacing-xl);
-      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      gap: var(--spacing-md);
       flex-wrap: wrap;
     }
 
@@ -197,8 +197,8 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .chart-section canvas {
-      max-height: 500px;
-      margin: var(--spacing-lg) 0;
+      max-height: 320px;
+      margin: var(--spacing-md) 0;
     }
 
     .table-container {
@@ -337,20 +337,32 @@ export class PricingOptimizationComponent implements OnInit {
       {
         label: 'Current Price',
         data: [],
-        backgroundColor: 'rgba(244, 67, 54, 0.5)',
-        borderColor: '#F44336',
-        borderWidth: 2,
+        backgroundColor: 'rgba(255, 107, 107, 0.6)',
+        borderColor: '#FF6B6B',
+        borderWidth: 2.5,
         fill: true,
-        tension: 0.4
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#FF6B6B',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        pointHoverRadius: 6,
+        pointHoverBackgroundColor: '#E53935'
       },
       {
         label: 'Optimized Price',
         data: [],
-        backgroundColor: 'rgba(0, 188, 212, 0.5)',
-        borderColor: '#00BCD4',
-        borderWidth: 2,
+        backgroundColor: 'rgba(102, 187, 255, 0.6)',
+        borderColor: '#2196F3',
+        borderWidth: 2.5,
         fill: true,
-        tension: 0.4
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#2196F3',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        pointHoverRadius: 6,
+        pointHoverBackgroundColor: '#1976D2'
       }
     ]
   };
@@ -363,23 +375,30 @@ export class PricingOptimizationComponent implements OnInit {
         display: true,
         position: 'top',
         labels: {
-          color: '#ffffff',
-          font: { size: 12 }
+          color: '#E0E0E0',
+          font: { size: 11, weight: 600, family: "'Inter', sans-serif" },
+          padding: 15,
+          usePointStyle: true,
+          pointStyle: 'circle',
+          boxWidth: 8
         }
       },
       title: {
         display: false
+      },
+      filler: {
+        propagate: true
       }
     },
     scales: {
       y: {
         beginAtZero: true,
-        ticks: { color: '#B0BEC5' },
-        grid: { color: '#424242' }
+        ticks: { color: '#9E9E9E', font: { size: 10 }, maxTicksLimit: 5 },
+        grid: { color: 'rgba(255, 255, 255, 0.05)', display: true }
       },
       x: {
-        ticks: { color: '#B0BEC5' },
-        grid: { color: '#424242' }
+        ticks: { color: '#9E9E9E', font: { size: 10 } },
+        grid: { color: 'transparent', display: false }
       }
     }
   };
@@ -411,8 +430,8 @@ export class PricingOptimizationComponent implements OnInit {
 
   private updateChartForType(): void {
     if (this.chartType === 'bar') {
-      (this.priceChartData!.datasets![0] as any).backgroundColor = 'rgba(244, 67, 54, 0.5)';
-      (this.priceChartData!.datasets![1] as any).backgroundColor = 'rgba(0, 188, 212, 0.5)';
+      (this.priceChartData!.datasets![0] as any).backgroundColor = 'rgba(255, 107, 107, 0.6)';
+      (this.priceChartData!.datasets![1] as any).backgroundColor = 'rgba(102, 187, 255, 0.6)';
       (this.priceChartData!.datasets![0] as any).fill = true;
       (this.priceChartData!.datasets![1] as any).fill = true;
     } else {
