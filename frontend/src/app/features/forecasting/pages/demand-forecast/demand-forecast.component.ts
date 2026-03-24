@@ -17,8 +17,24 @@ import { ApiService } from '@app/core/services/api.service';
 
       <div class="content">
         <div class="chart-section">
-          <h2>Product Demand Forecast</h2>
-          <canvas baseChart [data]="chartData" [options]="chartOptions"></canvas>
+          <div class="chart-header">
+            <h2>Product Demand Forecast</h2>
+            <div class="chart-toggle">
+              <button 
+                (click)="toggleChartType('bar')" 
+                [class.active]="chartType === 'bar'"
+                class="toggle-btn">
+                <i class="fas fa-chart-bar"></i> Bar Chart
+              </button>
+              <button 
+                (click)="toggleChartType('line')" 
+                [class.active]="chartType === 'line'"
+                class="toggle-btn">
+                <i class="fas fa-chart-line"></i> Line Chart
+              </button>
+            </div>
+          </div>
+          <canvas baseChart [data]="chartData" [options]="chartOptions" [type]="chartType"></canvas>
         </div>
 
         <div class="table-section">
@@ -130,6 +146,54 @@ import { ApiService } from '@app/core/services/api.service';
       margin-bottom: var(--spacing-2xl);
     }
 
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-xl);
+      gap: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .chart-toggle {
+      display: flex;
+      gap: var(--spacing-sm);
+      background: rgba(0, 188, 212, 0.08);
+      padding: 0.4rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(0, 188, 212, 0.2);
+    }
+
+    .toggle-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-semibold);
+      font-size: var(--font-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .toggle-btn i {
+      font-size: 1.1rem;
+    }
+
+    .toggle-btn.active {
+      background: linear-gradient(135deg, #00BCD4, #26E0E0);
+      color: #1a1a1a;
+      box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+    }
+
+    .toggle-btn:hover:not(.active) {
+      background: rgba(0, 188, 212, 0.1);
+      color: #26E0E0;
+    }
+
     .chart-section canvas {
       max-height: 500px;
       margin: var(--spacing-lg) 0;
@@ -228,6 +292,7 @@ export class DemandForecastComponent implements OnInit {
 
   forecasts: any[] = [];
   loading = true;
+  chartType: 'bar' | 'line' = 'bar';
 
   chartData: ChartConfiguration['data'] = {
     labels: [],
@@ -237,14 +302,18 @@ export class DemandForecastComponent implements OnInit {
         data: [],
         backgroundColor: 'rgba(0, 188, 212, 0.5)',
         borderColor: '#00BCD4',
-        borderWidth: 2
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4
       },
       {
         label: 'Demand Forecast',
         data: [],
         backgroundColor: 'rgba(76, 175, 80, 0.5)',
         borderColor: '#4CAF50',
-        borderWidth: 2
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4
       }
     ]
   };
@@ -282,6 +351,11 @@ export class DemandForecastComponent implements OnInit {
     this.loadForecasts();
   }
 
+  toggleChartType(type: 'bar' | 'line'): void {
+    this.chartType = type;
+    this.updateChartForType();
+  }
+
   loadForecasts(): void {
     this.apiService.getAllForecasts().subscribe({
       next: (response) => {
@@ -298,6 +372,20 @@ export class DemandForecastComponent implements OnInit {
     });
   }
 
+  private updateChartForType(): void {
+    if (this.chartType === 'bar') {
+      (this.chartData!.datasets![0] as any).backgroundColor = 'rgba(0, 188, 212, 0.5)';
+      (this.chartData!.datasets![1] as any).backgroundColor = 'rgba(76, 175, 80, 0.5)';
+      (this.chartData!.datasets![0] as any).fill = true;
+      (this.chartData!.datasets![1] as any).fill = true;
+    } else {
+      (this.chartData!.datasets![0] as any).backgroundColor = 'transparent';
+      (this.chartData!.datasets![1] as any).backgroundColor = 'transparent';
+      (this.chartData!.datasets![0] as any).fill = false;
+      (this.chartData!.datasets![1] as any).fill = false;
+    }
+  }
+
   private updateChart(): void {
     const labels = this.forecasts.map((f) => f.product_name.substring(0, 15));
     const unitsSold = this.forecasts.map((f) => f.units_sold);
@@ -306,5 +394,10 @@ export class DemandForecastComponent implements OnInit {
     this.chartData!.labels = labels;
     this.chartData!.datasets![0].data = unitsSold;
     this.chartData!.datasets![1].data = forecast;
+    
+    this.updateChartForType();
+    
+    // Trigger change detection by reassigning the object
+    this.chartData = { ...this.chartData };
   }
 }

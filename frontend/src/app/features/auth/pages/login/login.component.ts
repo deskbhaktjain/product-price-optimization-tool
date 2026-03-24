@@ -16,7 +16,7 @@ import { AuthService } from '@app/core/services/auth.service';
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
             <input
               type="email"
               id="email"
@@ -30,7 +30,7 @@ import { AuthService } from '@app/core/services/auth.service';
           </div>
 
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
             <input
               type="password"
               id="password"
@@ -44,7 +44,7 @@ import { AuthService } from '@app/core/services/auth.service';
           </div>
 
           <button type="submit" [disabled]="!loginForm.valid || isLoading" class="btn-primary">
-            {{ isLoading ? 'Signing in...' : 'Sign In' }}
+            <i class="fas fa-sign-in-alt"></i> {{ isLoading ? 'Signing in...' : 'Sign In' }}
           </button>
 
           <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
@@ -54,13 +54,6 @@ import { AuthService } from '@app/core/services/auth.service';
           <p class="register-link">
             Don't have an account? <a routerLink="/register">Register here</a>
           </p>
-
-          <div class="demo-credentials">
-            <h4>Demo Credentials:</h4>
-            <p>Admin: admin@example.com / admin123</p>
-            <p>Buyer: buyer@example.com / buyer123</p>
-            <p>Supplier: supplier@example.com / supplier123</p>
-          </div>
         </form>
       </div>
     </div>
@@ -134,13 +127,20 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     label {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       margin-bottom: var(--spacing-sm);
       font-weight: var(--font-semibold);
       color: var(--text-primary);
       font-size: var(--font-sm);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    label i {
+      color: #00BCD4;
+      font-size: 1.1rem;
     }
 
     .form-control {
@@ -187,6 +187,14 @@ import { AuthService } from '@app/core/services/auth.service';
       transition: all var(--transition-base);
       margin-top: var(--spacing-xl);
       box-shadow: var(--shadow-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .btn-primary i {
+      font-size: 1.2rem;
     }
 
     .btn-primary:hover:not(:disabled) {
@@ -259,28 +267,6 @@ import { AuthService } from '@app/core/services/auth.service';
 
     .register-link a:hover {
       border-bottom-color: #26E0E0;
-    }
-
-    .demo-credentials {
-      background: rgba(0, 188, 212, 0.08);
-      padding: var(--spacing-lg);
-      border-radius: var(--radius-md);
-      margin-top: var(--spacing-2xl);
-      font-size: var(--font-sm);
-      border: 1.5px solid rgba(0, 188, 212, 0.2);
-    }
-
-    .demo-credentials h4 {
-      margin: 0 0 var(--spacing-sm) 0;
-      color: #26E0E0;
-      font-weight: var(--font-semibold);
-    }
-
-    .demo-credentials p {
-      margin: var(--spacing-xs) 0;
-      color: var(--text-secondary);
-      font-family: 'Monaco', 'Menlo', monospace;
-      letter-spacing: 0.3px;
     }
 
     @media (max-width: 480px) {

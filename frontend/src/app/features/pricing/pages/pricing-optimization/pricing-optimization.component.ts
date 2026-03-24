@@ -17,8 +17,24 @@ import { ApiService } from '@app/core/services/api.service';
 
       <div class="content">
         <div class="chart-section">
-          <h2>Price Comparison Chart</h2>
-          <canvas baseChart [data]="priceChartData" [options]="chartOptions"></canvas>
+          <div class="chart-header">
+            <h2>Price Comparison Chart</h2>
+            <div class="chart-toggle">
+              <button 
+                (click)="toggleChartType('bar')" 
+                [class.active]="chartType === 'bar'"
+                class="toggle-btn">
+                <i class="fas fa-chart-bar"></i> Bar Chart
+              </button>
+              <button 
+                (click)="toggleChartType('line')" 
+                [class.active]="chartType === 'line'"
+                class="toggle-btn">
+                <i class="fas fa-chart-line"></i> Line Chart
+              </button>
+            </div>
+          </div>
+          <canvas baseChart [data]="priceChartData" [options]="chartOptions" [type]="chartType"></canvas>
         </div>
 
         <div class="table-section">
@@ -130,6 +146,54 @@ import { ApiService } from '@app/core/services/api.service';
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: var(--spacing-2xl);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-xl);
+      gap: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .chart-toggle {
+      display: flex;
+      gap: var(--spacing-sm);
+      background: rgba(0, 188, 212, 0.08);
+      padding: 0.4rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(0, 188, 212, 0.2);
+    }
+
+    .toggle-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-semibold);
+      font-size: var(--font-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .toggle-btn i {
+      font-size: 1.1rem;
+    }
+
+    .toggle-btn.active {
+      background: linear-gradient(135deg, #00BCD4, #26E0E0);
+      color: #1a1a1a;
+      box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+    }
+
+    .toggle-btn:hover:not(.active) {
+      background: rgba(0, 188, 212, 0.1);
+      color: #26E0E0;
     }
 
     .chart-section canvas {
@@ -265,6 +329,7 @@ export class PricingOptimizationComponent implements OnInit {
 
   optimizations: any[] = [];
   loading = true;
+  chartType: 'bar' | 'line' = 'bar';
 
   priceChartData: ChartConfiguration['data'] = {
     labels: [],
@@ -274,14 +339,18 @@ export class PricingOptimizationComponent implements OnInit {
         data: [],
         backgroundColor: 'rgba(244, 67, 54, 0.5)',
         borderColor: '#F44336',
-        borderWidth: 2
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4
       },
       {
         label: 'Optimized Price',
         data: [],
         backgroundColor: 'rgba(0, 188, 212, 0.5)',
         borderColor: '#00BCD4',
-        borderWidth: 2
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4
       }
     ]
   };
@@ -319,49 +388,65 @@ export class PricingOptimizationComponent implements OnInit {
     this.loadOptimizations();
   }
 
+  toggleChartType(type: 'bar' | 'line'): void {
+    this.chartType = type;
+    this.updateChartForType();
+  }
+
   loadOptimizations(): void {
     this.apiService.getAllOptimizedPrices().subscribe({
-      next: (response) => {
+      next: (response: any) => {
         if (response.success) {
           this.optimizations = response.data;
           this.updateChart();
           this.loading = false;
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error loading optimizations:', error);
         this.loading = false;
       }
     });
   }
 
+  private updateChartForType(): void {
+    if (this.chartType === 'bar') {
+      (this.priceChartData!.datasets![0] as any).backgroundColor = 'rgba(244, 67, 54, 0.5)';
+      (this.priceChartData!.datasets![1] as any).backgroundColor = 'rgba(0, 188, 212, 0.5)';
+      (this.priceChartData!.datasets![0] as any).fill = true;
+      (this.priceChartData!.datasets![1] as any).fill = true;
+    } else {
+      (this.priceChartData!.datasets![0] as any).backgroundColor = 'transparent';
+      (this.priceChartData!.datasets![1] as any).backgroundColor = 'transparent';
+      (this.priceChartData!.datasets![0] as any).fill = false;
+      (this.priceChartData!.datasets![1] as any).fill = false;
+    }
+  }
+
   private updateChart(): void {
-    const labels = this.optimizations.map((o) =>
-      o.product_name.substring(0, 15)
-    );
-    const currentPrices = this.optimizations.map((o) => o.selling_price);
-    const optimizedPrices = this.optimizations.map((o) => o.optimized_price);
+    const labels = this.optimizations.map((o) => o.product_name.substring(0, 15));
+    const currentPrice = this.optimizations.map((o) => o.selling_price);
+    const optimizedPrice = this.optimizations.map((o) => o.optimized_price);
 
     this.priceChartData!.labels = labels;
-    this.priceChartData!.datasets![0].data = currentPrices;
-    this.priceChartData!.datasets![1].data = optimizedPrices;
+    this.priceChartData!.datasets![0].data = currentPrice;
+    this.priceChartData!.datasets![1].data = optimizedPrice;
+    
+    this.updateChartForType();
+    
+    // Trigger change detection by reassigning the object
+    this.priceChartData = { ...this.priceChartData };
   }
 
   getRecommendationClass(recommendation: string): string {
-    if (recommendation === 'Increase price') return 'increase';
-    if (recommendation === 'Decrease price') return 'decrease';
-    return 'maintain';
+    return recommendation.toLowerCase();
   }
 
   getRecommendationBadgeClass(recommendation: string): string {
-    if (recommendation === 'Increase price') return 'increase';
-    if (recommendation === 'Decrease price') return 'decrease';
-    return 'maintain';
+    return recommendation.toLowerCase();
   }
 
   getChangeClass(change: number): string {
-    if (change > 0) return 'positive';
-    if (change < 0) return 'negative';
-    return '';
+    return change > 0 ? 'positive' : change < 0 ? 'negative' : 'neutral';
   }
 }

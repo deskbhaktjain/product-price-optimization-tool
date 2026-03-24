@@ -16,7 +16,7 @@ import { AuthService } from '@app/core/services/auth.service';
 
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="name">Full Name</label>
+            <label for="name"><i class="fas fa-user"></i> Full Name</label>
             <input
               type="text"
               id="name"
@@ -30,7 +30,7 @@ import { AuthService } from '@app/core/services/auth.service';
           </div>
 
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
             <input
               type="email"
               id="email"
@@ -44,7 +44,7 @@ import { AuthService } from '@app/core/services/auth.service';
           </div>
 
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
             <input
               type="password"
               id="password"
@@ -58,7 +58,7 @@ import { AuthService } from '@app/core/services/auth.service';
           </div>
 
           <div class="form-group">
-            <label for="role">Role</label>
+            <label for="role"><i class="fas fa-user-tag"></i> Role</label>
             <select formControlName="role" class="form-control">
               <option value="buyer">Buyer</option>
               <option value="supplier">Supplier</option>
@@ -66,7 +66,7 @@ import { AuthService } from '@app/core/services/auth.service';
           </div>
 
           <button type="submit" [disabled]="!registerForm.valid || isLoading" class="btn-primary">
-            {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+            <i class="fas fa-user-plus"></i> {{ isLoading ? 'Creating Account...' : 'Create Account' }}
           </button>
 
           <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
@@ -147,13 +147,20 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     label {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       margin-bottom: var(--spacing-sm);
       font-weight: var(--font-semibold);
       color: var(--text-primary);
       font-size: var(--font-sm);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+    }
+
+    label i {
+      color: #00BCD4;
+      font-size: 1.1rem;
     }
 
     .form-control {
@@ -200,6 +207,14 @@ import { AuthService } from '@app/core/services/auth.service';
       transition: all var(--transition-base);
       margin-top: var(--spacing-xl);
       box-shadow: var(--shadow-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .btn-primary i {
+      font-size: 1.2rem;
     }
 
     .btn-primary:hover:not(:disabled) {

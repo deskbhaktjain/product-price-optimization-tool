@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from './core/services/auth.service';
@@ -17,16 +17,16 @@ import { User } from './core/services/auth.service';
             <h1>Price Optimization Tool</h1>
           </div>
           <div class="navbar-menu">
-            <a routerLink="/dashboard">Dashboard</a>
-            <a routerLink="/products">Products</a>
-            <a routerLink="/demand-forecast">Demand Forecast</a>
-            <a routerLink="/pricing-optimization">Pricing Optimization</a>
+            <a routerLink="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a routerLink="/products"><i class="fas fa-box"></i> Products</a>
+            <a routerLink="/demand-forecast"><i class="fas fa-chart-bar"></i> Demand Forecast</a>
+            <a routerLink="/pricing-optimization"><i class="fas fa-tag"></i> Pricing Optimization</a>
           </div>
           <div class="navbar-right">
             <span *ngIf="(currentUser$ | async) as user" class="user-info">
-              Welcome, {{ user.name }}
+              <i class="fas fa-user-circle"></i> Welcome, {{ user.name }}
             </span>
-            <button (click)="logout()" class="logout-btn">Logout</button>
+            <button (click)="logout()" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
           </div>
         </div>
       </nav>
@@ -95,6 +95,14 @@ import { User } from './core/services/auth.service';
       font-size: 0.95rem;
       position: relative;
       padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .navbar-menu a i {
+      font-size: 1.1rem;
+      transition: all var(--transition-base);
     }
 
     .navbar-menu a::after {
@@ -127,6 +135,14 @@ import { User } from './core/services/auth.service';
       font-size: 0.85rem;
       color: var(--text-tertiary);
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .user-info i {
+      color: #00BCD4;
+      font-size: 1.2rem;
     }
 
     .logout-btn {
@@ -140,6 +156,13 @@ import { User } from './core/services/auth.service';
       font-weight: 600;
       font-size: 0.9rem;
       box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logout-btn i {
+      font-size: 1rem;
     }
 
     .logout-btn:hover {
@@ -217,6 +240,7 @@ import { User } from './core/services/auth.service';
 })
 export class AppComponent {
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   isAuthenticated$: Observable<boolean>;
   currentUser$: Observable<User | null>;
@@ -232,5 +256,6 @@ export class AppComponent {
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

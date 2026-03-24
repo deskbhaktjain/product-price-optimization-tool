@@ -14,14 +14,14 @@ import { AuthService } from '@app/core/services/auth.service';
       <div class="list-header">
         <h1>Product Management</h1>
         <button *ngIf="(canCreate$ | async)" routerLink="/products/create" class="btn-add">
-          + Add New Product
+          <i class="fas fa-plus-circle"></i> Add New Product
         </button>
       </div>
 
       <div class="filters">
         <input
           type="text"
-          placeholder="Search products..."
+          placeholder="🔍 Search products..."
           [(ngModel)]="searchTerm"
           (ngModelChange)="onSearch()"
           class="search-input"
@@ -64,9 +64,9 @@ import { AuthService } from '@app/core/services/auth.service';
               </td>
               <td>
                 <div class="actions">
-                  <button routerLink="/products/{{ product._id }}" class="btn-view" title="View">👁️</button>
-                  <button *ngIf="(canEdit$ | async)" routerLink="/products/edit/{{ product._id }}" class="btn-edit" title="Edit">✏️</button>
-                  <button *ngIf="(canDelete$ | async)" (click)="deleteProduct(product._id)" class="btn-delete" title="Delete">🗑️</button>
+                  <button routerLink="/products/{{ product._id }}" class="btn-view" title="View"><i class="fas fa-eye"></i></button>
+                  <button *ngIf="(canEdit$ | async)" routerLink="/products/edit/{{ product._id }}" class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                  <button *ngIf="(canDelete$ | async)" (click)="deleteProduct(product._id)" class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
                 </div>
               </td>
             </tr>
@@ -141,6 +141,13 @@ import { AuthService } from '@app/core/services/auth.service';
       transition: all var(--transition-base);
       box-shadow: var(--shadow-primary);
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-add i {
+      font-size: 1.2rem;
     }
 
     .btn-add:hover {
@@ -256,6 +263,18 @@ import { AuthService } from '@app/core/services/auth.service';
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .btn-view i {
+      color: #00BCD4;
+    }
+
+    .btn-edit i {
+      color: #4CAF50;
+    }
+
+    .btn-delete i {
+      color: #F44336;
     }
 
     .btn-view:hover {
