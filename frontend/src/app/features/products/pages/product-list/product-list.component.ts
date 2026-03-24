@@ -122,13 +122,13 @@ import { AuthService } from '@app/core/services/auth.service';
 
     .list-header h1 {
       font-size: 1.8rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin: 0;
     }
 
     .btn-add {
-      background-color: #27ae60;
-      color: white;
+      background-color: #00BCD4;
+      color: #2a2a2a;
       border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 4px;
@@ -138,7 +138,7 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .btn-add:hover {
-      background-color: #229954;
+      background-color: #80DEEA;
     }
 
     .filters {
@@ -151,25 +151,32 @@ import { AuthService } from '@app/core/services/auth.service';
     .search-input,
     .category-select {
       padding: 0.75rem;
-      border: 1px solid #ddd;
+      border: 1px solid #424242;
       border-radius: 4px;
       font-size: 1rem;
       flex: 1;
       min-width: 200px;
+      background-color: #363636;
+      color: #ffffff;
     }
 
     .search-input:focus,
     .category-select:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      border-color: #00BCD4;
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+    }
+
+    .search-input::placeholder {
+      color: #9E9E9E;
     }
 
     .table-container {
-      background: white;
+      background: #363636;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       overflow-x: auto;
+      border: 1px solid #424242;
     }
 
     .products-table {
@@ -178,27 +185,28 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .products-table th {
-      background-color: #f8f9fa;
-      color: #2c3e50;
+      background-color: #2a2a2a;
+      color: #00BCD4;
       padding: 1rem;
       text-align: left;
       font-weight: 600;
-      border-bottom: 2px solid #e0e0e0;
+      border-bottom: 2px solid #424242;
       white-space: nowrap;
     }
 
     .products-table td {
       padding: 1rem;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #424242;
+      color: #ffffff;
     }
 
     .products-table tr:hover {
-      background-color: #f8f9fa;
+      background-color: #2a2a2a;
     }
 
     .rating {
-      background-color: #f1c40f;
-      color: #2c3e50;
+      background-color: #FF9800;
+      color: #2a2a2a;
       padding: 0.25rem 0.75rem;
       border-radius: 4px;
       font-weight: 600;
@@ -230,7 +238,7 @@ import { AuthService } from '@app/core/services/auth.service';
     .loading {
       padding: 2rem;
       text-align: center;
-      color: #7f8c8d;
+      color: #B0BEC5;
     }
 
     .pagination {
@@ -242,26 +250,28 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .btn-pagination {
-      background-color: #667eea;
-      color: white;
+      background-color: #00BCD4;
+      color: #2a2a2a;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.3s;
+      font-weight: 600;
     }
 
     .btn-pagination:hover:not(:disabled) {
-      background-color: #5568d3;
+      background-color: #80DEEA;
     }
 
     .btn-pagination:disabled {
-      background-color: #bdc3c7;
+      background-color: #616161;
       cursor: not-allowed;
+      color: #9E9E9E;
     }
 
     .page-info {
-      color: #7f8c8d;
+      color: #B0BEC5;
       font-weight: 600;
     }
 

@@ -85,12 +85,12 @@ import { ApiService } from '@app/core/services/api.service';
 
     .header h1 {
       font-size: 2rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 0.5rem;
     }
 
     .header p {
-      color: #7f8c8d;
+      color: #B0BEC5;
       font-size: 1.1rem;
     }
 
@@ -102,15 +102,16 @@ import { ApiService } from '@app/core/services/api.service';
 
     .chart-section,
     .table-section {
-      background: white;
+      background: #363636;
       padding: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      border: 1px solid #424242;
     }
 
     h2 {
       font-size: 1.5rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 1.5rem;
     }
 
@@ -128,34 +129,35 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .optimization-table th {
-      background-color: #f8f9fa;
-      color: #2c3e50;
+      background-color: #2a2a2a;
+      color: #00BCD4;
       padding: 1rem;
       text-align: left;
       font-weight: 600;
-      border-bottom: 2px solid #e0e0e0;
+      border-bottom: 2px solid #424242;
       white-space: nowrap;
     }
 
     .optimization-table td {
       padding: 1rem;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #424242;
+      color: #ffffff;
     }
 
     .optimization-table tr:hover {
-      background-color: #f8f9fa;
+      background-color: #2a2a2a;
     }
 
     .optimization-table tr.increase {
-      background-color: #fef5e7;
+      background-color: rgba(255, 152, 0, 0.1);
     }
 
     .optimization-table tr.decrease {
-      background-color: #d5f4e6;
+      background-color: rgba(76, 175, 80, 0.1);
     }
 
     .optimization-table tr.maintain {
-      background-color: #f0f3f4;
+      background-color: rgba(158, 158, 158, 0.1);
     }
 
     .badge {
@@ -167,17 +169,17 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .badge.increase {
-      background-color: #f39c12;
-      color: white;
+      background-color: #FF9800;
+      color: #2a2a2a;
     }
 
     .badge.decrease {
-      background-color: #27ae60;
+      background-color: #4CAF50;
       color: white;
     }
 
     .badge.maintain {
-      background-color: #95a5a6;
+      background-color: #9E9E9E;
       color: white;
     }
 
@@ -186,17 +188,17 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .optimization-table td:nth-child(5).positive {
-      color: #f39c12;
+      color: #FF9800;
     }
 
     .optimization-table td:nth-child(5).negative {
-      color: #27ae60;
+      color: #4CAF50;
     }
 
     .loading {
       text-align: center;
       padding: 2rem;
-      color: #7f8c8d;
+      color: #B0BEC5;
     }
 
     @media (max-width: 768px) {
@@ -234,15 +236,15 @@ export class PricingOptimizationComponent implements OnInit {
       {
         label: 'Current Price',
         data: [],
-        backgroundColor: 'rgba(231, 76, 60, 0.5)',
-        borderColor: '#e74c3c',
+        backgroundColor: 'rgba(244, 67, 54, 0.5)',
+        borderColor: '#F44336',
         borderWidth: 2
       },
       {
         label: 'Optimized Price',
         data: [],
-        backgroundColor: 'rgba(39, 174, 96, 0.5)',
-        borderColor: '#27ae60',
+        backgroundColor: 'rgba(0, 188, 212, 0.5)',
+        borderColor: '#00BCD4',
         borderWidth: 2
       }
     ]
@@ -254,7 +256,11 @@ export class PricingOptimizationComponent implements OnInit {
     plugins: {
       legend: {
         display: true,
-        position: 'top'
+        position: 'top',
+        labels: {
+          color: '#ffffff',
+          font: { size: 12 }
+        }
       },
       title: {
         display: false
@@ -262,7 +268,13 @@ export class PricingOptimizationComponent implements OnInit {
     },
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks: { color: '#B0BEC5' },
+        grid: { color: '#424242' }
+      },
+      x: {
+        ticks: { color: '#B0BEC5' },
+        grid: { color: '#424242' }
       }
     }
   };

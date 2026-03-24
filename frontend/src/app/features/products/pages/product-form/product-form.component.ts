@@ -140,13 +140,14 @@ import { ApiService } from '@app/core/services/api.service';
   `,
   styles: [`
     .product-form-container {
-      background: white;
+      background: #363636;
       padding: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       max-width: 800px;
       margin: 0 auto;
       animation: fadeIn 0.3s ease-in;
+      border: 1px solid #424242;
     }
 
     @keyframes fadeIn {
@@ -162,7 +163,7 @@ import { ApiService } from '@app/core/services/api.service';
 
     h1 {
       font-size: 1.8rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 2rem;
     }
 
@@ -190,21 +191,23 @@ import { ApiService } from '@app/core/services/api.service';
 
     label {
       font-weight: 600;
-      color: #2c3e50;
+      color: #ffffff;
     }
 
     .form-control {
       padding: 0.75rem;
-      border: 1px solid #ddd;
+      border: 1px solid #424242;
       border-radius: 4px;
       font-size: 1rem;
       transition: border-color 0.3s;
+      background-color: #2a2a2a;
+      color: #ffffff;
     }
 
     .form-control:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      border-color: #00BCD4;
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
     }
 
     textarea.form-control {
@@ -213,7 +216,7 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     small.error {
-      color: #e74c3c;
+      color: #F44336;
       font-size: 0.85rem;
     }
 
@@ -237,30 +240,31 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .btn-submit {
-      background-color: #667eea;
-      color: white;
+      background-color: #00BCD4;
+      color: #2a2a2a;
     }
 
     .btn-submit:hover:not(:disabled) {
-      background-color: #5568d3;
+      background-color: #80DEEA;
     }
 
     .btn-submit:disabled {
-      background-color: #bdc3c7;
+      background-color: #616161;
       cursor: not-allowed;
+      color: #9E9E9E;
     }
 
     .btn-cancel {
-      background-color: #ecf0f1;
-      color: #2c3e50;
+      background-color: #616161;
+      color: #ffffff;
     }
 
     .btn-cancel:hover {
-      background-color: #bdc3c7;
+      background-color: #757575;
     }
 
     .error {
-      color: #e74c3c;
+      color: #F44336;
       margin-top: 1rem;
       text-align: center;
     }

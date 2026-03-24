@@ -40,17 +40,18 @@ import { User } from './core/services/auth.service';
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      background-color: #f5f5f5;
+      background-color: #2a2a2a;
     }
 
     .navbar {
-      background-color: #2c3e50;
+      background-color: #1e1e1e;
       color: white;
       padding: 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 188, 212, 0.2);
       position: sticky;
       top: 0;
       z-index: 1000;
+      border-bottom: 2px solid #00BCD4;
     }
 
     .navbar-content {
@@ -67,6 +68,7 @@ import { User } from './core/services/auth.service';
       margin: 0;
       font-size: 1.5rem;
       font-weight: 600;
+      color: #00BCD4;
     }
 
     .navbar-menu {
@@ -76,13 +78,14 @@ import { User } from './core/services/auth.service';
     }
 
     .navbar-menu a {
-      color: white;
+      color: #ffffff;
       text-decoration: none;
-      transition: opacity 0.3s;
+      transition: color 0.3s;
+      font-weight: 500;
     }
 
     .navbar-menu a:hover {
-      opacity: 0.7;
+      color: #00BCD4;
     }
 
     .navbar-right {
@@ -93,20 +96,22 @@ import { User } from './core/services/auth.service';
 
     .user-info {
       font-size: 0.9rem;
+      color: #B0BEC5;
     }
 
     .logout-btn {
-      background-color: #e74c3c;
+      background-color: #F44336;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.3s;
+      font-weight: 600;
     }
 
     .logout-btn:hover {
-      background-color: #c0392b;
+      background-color: #D32F2F;
     }
 
     .main-content {
@@ -115,6 +120,7 @@ import { User } from './core/services/auth.service';
       margin: 0 auto;
       width: 100%;
       padding: 2rem;
+      background-color: #2a2a2a;
     }
 
     @media (max-width: 768px) {

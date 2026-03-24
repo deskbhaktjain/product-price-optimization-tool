@@ -83,12 +83,12 @@ import { ApiService } from '@app/core/services/api.service';
 
     .header h1 {
       font-size: 2rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 0.5rem;
     }
 
     .header p {
-      color: #7f8c8d;
+      color: #B0BEC5;
       font-size: 1.1rem;
     }
 
@@ -100,15 +100,16 @@ import { ApiService } from '@app/core/services/api.service';
 
     .chart-section,
     .table-section {
-      background: white;
+      background: #363636;
       padding: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      border: 1px solid #424242;
     }
 
     h2 {
       font-size: 1.5rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 1.5rem;
     }
 
@@ -126,27 +127,28 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .forecast-table th {
-      background-color: #f8f9fa;
-      color: #2c3e50;
+      background-color: #2a2a2a;
+      color: #00BCD4;
       padding: 1rem;
       text-align: left;
       font-weight: 600;
-      border-bottom: 2px solid #e0e0e0;
+      border-bottom: 2px solid #424242;
       white-space: nowrap;
     }
 
     .forecast-table td {
       padding: 1rem;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #424242;
+      color: #ffffff;
     }
 
     .forecast-table tr:hover {
-      background-color: #f8f9fa;
+      background-color: #2a2a2a;
     }
 
     .rating {
-      background-color: #f1c40f;
-      color: #2c3e50;
+      background-color: #FF9800;
+      color: #2a2a2a;
       padding: 0.25rem 0.75rem;
       border-radius: 4px;
       font-weight: 600;
@@ -154,8 +156,8 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .forecast-value {
-      background-color: #d5f4e6;
-      color: #27ae60;
+      background-color: rgba(76, 175, 80, 0.3);
+      color: #4CAF50;
       padding: 0.25rem 0.75rem;
       border-radius: 4px;
       font-weight: 600;
@@ -164,7 +166,7 @@ import { ApiService } from '@app/core/services/api.service';
     .loading {
       text-align: center;
       padding: 2rem;
-      color: #7f8c8d;
+      color: #B0BEC5;
     }
 
     @media (max-width: 768px) {
@@ -197,15 +199,15 @@ export class DemandForecastComponent implements OnInit {
       {
         label: 'Units Sold',
         data: [],
-        backgroundColor: 'rgba(102, 126, 234, 0.5)',
-        borderColor: '#667eea',
+        backgroundColor: 'rgba(0, 188, 212, 0.5)',
+        borderColor: '#00BCD4',
         borderWidth: 2
       },
       {
         label: 'Demand Forecast',
         data: [],
-        backgroundColor: 'rgba(39, 174, 96, 0.5)',
-        borderColor: '#27ae60',
+        backgroundColor: 'rgba(76, 175, 80, 0.5)',
+        borderColor: '#4CAF50',
         borderWidth: 2
       }
     ]
@@ -217,7 +219,11 @@ export class DemandForecastComponent implements OnInit {
     plugins: {
       legend: {
         display: true,
-        position: 'top'
+        position: 'top',
+        labels: {
+          color: '#ffffff',
+          font: { size: 12 }
+        }
       },
       title: {
         display: false
@@ -225,7 +231,13 @@ export class DemandForecastComponent implements OnInit {
     },
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks: { color: '#B0BEC5' },
+        grid: { color: '#424242' }
+      },
+      x: {
+        ticks: { color: '#B0BEC5' },
+        grid: { color: '#424242' }
       }
     }
   };

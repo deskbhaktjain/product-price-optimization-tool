@@ -22,39 +22,40 @@ import { RouterLink } from '@angular/router';
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
     }
 
     .error-card {
-      background: white;
+      background: #363636;
       padding: 3rem;
-      border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
       text-align: center;
+      border: 1px solid #00BCD4;
     }
 
     h1 {
       font-size: 5rem;
-      color: #e74c3c;
+      color: #F44336;
       margin: 0;
       font-weight: 700;
     }
 
     h2 {
       font-size: 2rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin: 0.5rem 0;
     }
 
     p {
-      color: #7f8c8d;
+      color: #B0BEC5;
       font-size: 1.1rem;
       margin: 1rem 0;
     }
 
     .btn-home {
-      background-color: #667eea;
-      color: white;
+      background-color: #00BCD4;
+      color: #2a2a2a;
       border: none;
       padding: 0.75rem 2rem;
       border-radius: 4px;
@@ -66,7 +67,7 @@ import { RouterLink } from '@angular/router';
     }
 
     .btn-home:hover {
-      background-color: #5568d3;
+      background-color: #80DEEA;
     }
   `]
 })

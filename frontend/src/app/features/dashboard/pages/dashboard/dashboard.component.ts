@@ -106,12 +106,12 @@ import { AuthService } from '@app/core/services/auth.service';
 
     .dashboard-header h1 {
       font-size: 2rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 0.5rem;
     }
 
     .dashboard-header p {
-      color: #7f8c8d;
+      color: #B0BEC5;
       font-size: 1.1rem;
     }
 
@@ -123,20 +123,22 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .stat-card {
-      background: white;
+      background: #363636;
       padding: 1.5rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #424242;
     }
 
     .stat-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.2);
+      border-color: #00BCD4;
     }
 
     .stat-card h3 {
-      color: #7f8c8d;
+      color: #B0BEC5;
       font-size: 0.9rem;
       font-weight: 500;
       margin-bottom: 1rem;
@@ -146,7 +148,7 @@ import { AuthService } from '@app/core/services/auth.service';
     .stat-number {
       font-size: 2rem;
       font-weight: 700;
-      color: #667eea;
+      color: #00BCD4;
       margin: 0;
     }
 
@@ -156,7 +158,7 @@ import { AuthService } from '@app/core/services/auth.service';
 
     .quick-actions h2 {
       font-size: 1.5rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 1rem;
     }
 
@@ -167,8 +169,8 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .action-btn {
-      background: white;
-      border: 2px solid #e0e0e0;
+      background: #363636;
+      border: 2px solid #424242;
       padding: 1.5rem;
       border-radius: 8px;
       cursor: pointer;
@@ -179,14 +181,15 @@ import { AuthService } from '@app/core/services/auth.service';
       gap: 0.5rem;
       transition: all 0.3s;
       font-size: 0.95rem;
-      color: #2c3e50;
+      color: #00BCD4;
       font-weight: 600;
     }
 
     .action-btn:hover {
-      border-color: #667eea;
-      background-color: #f5f7ff;
+      border-color: #00BCD4;
+      background-color: #2a2a2a;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 188, 212, 0.2);
     }
 
     .icon {
@@ -194,15 +197,16 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .recent-products {
-      background: white;
+      background: #363636;
       padding: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      border: 1px solid #424242;
     }
 
     .recent-products h2 {
       font-size: 1.5rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin-bottom: 1.5rem;
     }
 
@@ -212,21 +216,22 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .products-table th {
-      background-color: #f8f9fa;
-      color: #2c3e50;
+      background-color: #2a2a2a;
+      color: #00BCD4;
       padding: 1rem;
       text-align: left;
       font-weight: 600;
-      border-bottom: 2px solid #e0e0e0;
+      border-bottom: 2px solid #424242;
     }
 
     .products-table td {
       padding: 1rem;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #424242;
+      color: #ffffff;
     }
 
     .products-table tr:hover {
-      background-color: #f8f9fa;
+      background-color: #2a2a2a;
     }
 
     @media (max-width: 768px) {

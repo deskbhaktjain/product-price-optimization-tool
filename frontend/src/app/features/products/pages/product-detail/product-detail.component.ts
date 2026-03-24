@@ -100,8 +100,8 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .btn-back {
-      background: #ecf0f1;
-      color: #2c3e50;
+      background: #616161;
+      color: #ffffff;
       border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 4px;
@@ -112,14 +112,15 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .btn-back:hover {
-      background-color: #bdc3c7;
+      background-color: #757575;
     }
 
     .product-detail-card {
-      background: white;
+      background: #363636;
       padding: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      border: 1px solid #424242;
     }
 
     .product-header {
@@ -132,13 +133,13 @@ import { ApiService } from '@app/core/services/api.service';
 
     h1 {
       font-size: 2rem;
-      color: #2c3e50;
+      color: #00BCD4;
       margin: 0;
     }
 
     .badge {
-      background-color: #667eea;
-      color: white;
+      background-color: #00BCD4;
+      color: #2a2a2a;
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-size: 0.9rem;
@@ -153,16 +154,17 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .detail-group {
-      background: #f8f9fa;
+      background: #2a2a2a;
       padding: 1.5rem;
       border-radius: 8px;
+      border: 1px solid #424242;
     }
 
     .detail-group h3 {
-      color: #2c3e50;
+      color: #00BCD4;
       font-size: 1.1rem;
       margin: 0 0 1rem 0;
-      border-bottom: 2px solid #667eea;
+      border-bottom: 2px solid #00BCD4;
       padding-bottom: 0.5rem;
     }
 
@@ -179,42 +181,44 @@ import { ApiService } from '@app/core/services/api.service';
 
     .detail-row label {
       font-weight: 600;
-      color: #7f8c8d;
+      color: #B0BEC5;
     }
 
     .detail-row span {
-      color: #2c3e50;
+      color: #ffffff;
       font-weight: 600;
       font-size: 1.1rem;
     }
 
     .rating {
-      background-color: #f1c40f;
+      background-color: #FF9800;
+      color: #2a2a2a;
       padding: 0.25rem 0.75rem;
       border-radius: 4px;
     }
 
     .optimized {
-      color: #27ae60;
-      background-color: #d5f4e6;
+      color: #4CAF50;
+      background-color: rgba(76, 175, 80, 0.2);
       padding: 0.25rem 0.75rem;
       border-radius: 4px;
     }
 
     .product-description {
-      background: #ecf0f1;
+      background: #2a2a2a;
       padding: 1.5rem;
       border-radius: 8px;
       margin-bottom: 2rem;
+      border: 1px solid #424242;
     }
 
     .product-description h3 {
-      color: #2c3e50;
+      color: #00BCD4;
       margin: 0 0 1rem 0;
     }
 
     .product-description p {
-      color: #7f8c8d;
+      color: #B0BEC5;
       line-height: 1.6;
       margin: 0;
     }
@@ -235,27 +239,27 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .btn-edit {
-      background-color: #667eea;
-      color: white;
+      background-color: #00BCD4;
+      color: #2a2a2a;
     }
 
     .btn-edit:hover {
-      background-color: #5568d3;
+      background-color: #80DEEA;
     }
 
     .btn-delete {
-      background-color: #e74c3c;
+      background-color: #F44336;
       color: white;
     }
 
     .btn-delete:hover {
-      background-color: #c0392b;
+      background-color: #D32F2F;
     }
 
     .loading {
       text-align: center;
       padding: 2rem;
-      color: #7f8c8d;
+      color: #B0BEC5;
     }
 
     @media (max-width: 768px) {
