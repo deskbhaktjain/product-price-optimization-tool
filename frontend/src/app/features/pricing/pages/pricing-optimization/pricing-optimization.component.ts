@@ -65,13 +65,13 @@ import { ApiService } from '@app/core/services/api.service';
   `,
   styles: [`
     .pricing-container {
-      animation: fadeIn 0.3s ease-in;
+      animation: slideInUp 0.4s ease-out;
     }
 
-    @keyframes fadeIn {
+    @keyframes slideInUp {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -80,47 +80,66 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .header {
-      margin-bottom: 2rem;
+      margin-bottom: var(--spacing-3xl);
+      animation: slideInUp 0.5s ease-out 0.1s both;
     }
 
     .header h1 {
-      font-size: 2rem;
-      color: #00BCD4;
-      margin-bottom: 0.5rem;
+      font-size: var(--font-3xl);
+      background: linear-gradient(135deg, #26E0E0 0%, #00BCD4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--spacing-sm);
     }
 
     .header p {
-      color: #B0BEC5;
-      font-size: 1.1rem;
+      color: var(--text-tertiary);
+      font-size: var(--font-lg);
+      font-weight: var(--font-medium);
     }
 
     .content {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: var(--spacing-2xl);
     }
 
     .chart-section,
     .table-section {
-      background: #363636;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      border: 1px solid #424242;
+      background: var(--card-background);
+      padding: var(--spacing-2xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .chart-section {
+      animation-delay: 0.1s;
+    }
+
+    .table-section {
+      animation-delay: 0.2s;
     }
 
     h2 {
-      font-size: 1.5rem;
-      color: #00BCD4;
-      margin-bottom: 1.5rem;
+      font-size: var(--font-2xl);
+      background: linear-gradient(135deg, #26E0E0 0%, #00BCD4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--spacing-2xl);
     }
 
     .chart-section canvas {
-      max-height: 400px;
+      max-height: 500px;
+      margin: var(--spacing-lg) 0;
     }
 
     .table-container {
-      overflow-x: auto;
+      overflow: auto;
+      border-radius: var(--radius-md);
     }
 
     .optimization-table {
@@ -129,97 +148,114 @@ import { ApiService } from '@app/core/services/api.service';
     }
 
     .optimization-table th {
-      background-color: #2a2a2a;
-      color: #00BCD4;
-      padding: 1rem;
+      background: linear-gradient(90deg, rgba(0, 188, 212, 0.1), transparent);
+      color: #26E0E0;
+      padding: var(--spacing-lg);
       text-align: left;
       font-weight: 600;
-      border-bottom: 2px solid #424242;
+      font-size: var(--font-sm);
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--border-light);
       white-space: nowrap;
+      position: sticky;
+      top: 0;
     }
 
     .optimization-table td {
-      padding: 1rem;
-      border-bottom: 1px solid #424242;
-      color: #ffffff;
+      padding: var(--spacing-lg);
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
     }
 
-    .optimization-table tr:hover {
-      background-color: #2a2a2a;
+    .optimization-table tbody tr {
+      transition: all var(--transition-base);
+    }
+
+    .optimization-table tbody tr:hover {
+      background: rgba(0, 188, 212, 0.05);
+      border-bottom-color: rgba(0, 188, 212, 0.3);
+    }
+
+    .optimization-table tbody tr:last-child td {
+      border-bottom: none;
     }
 
     .optimization-table tr.increase {
-      background-color: rgba(255, 152, 0, 0.1);
+      background: rgba(255, 152, 0, 0.08);
     }
 
     .optimization-table tr.decrease {
-      background-color: rgba(76, 175, 80, 0.1);
+      background: rgba(76, 175, 80, 0.08);
     }
 
     .optimization-table tr.maintain {
-      background-color: rgba(158, 158, 158, 0.1);
+      background: rgba(156, 156, 156, 0.05);
     }
 
     .badge {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 0.9rem;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-semibold);
+      font-size: var(--font-sm);
+      text-transform: capitalize;
     }
 
     .badge.increase {
-      background-color: #FF9800;
-      color: #2a2a2a;
+      background: linear-gradient(135deg, #FF9800, #FFB74D);
+      color: #1a1a1a;
     }
 
     .badge.decrease {
-      background-color: #4CAF50;
+      background: linear-gradient(135deg, #4CAF50, #66BB6A);
       color: white;
     }
 
     .badge.maintain {
-      background-color: #9E9E9E;
-      color: white;
+      background: rgba(156, 156, 156, 0.3);
+      color: var(--text-secondary);
+      border: 1px solid rgba(156, 156, 156, 0.5);
     }
 
     .optimization-table td:nth-child(5) {
       font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
     .optimization-table td:nth-child(5).positive {
-      color: #FF9800;
+      color: #FFB74D;
     }
 
     .optimization-table td:nth-child(5).negative {
-      color: #4CAF50;
+      color: #66BB6A;
     }
 
     .loading {
       text-align: center;
-      padding: 2rem;
-      color: #B0BEC5;
+      padding: var(--spacing-3xl);
+      color: var(--text-tertiary);
+      font-size: var(--font-base);
     }
 
     @media (max-width: 768px) {
       .header h1 {
-        font-size: 1.5rem;
+        font-size: var(--font-2xl);
       }
 
       .chart-section,
       .table-section {
-        padding: 1rem;
+        padding: var(--spacing-lg);
       }
 
       .optimization-table th,
       .optimization-table td {
-        padding: 0.75rem 0.5rem;
-        font-size: 0.85rem;
+        padding: var(--spacing-md);
+        font-size: 0.9rem;
       }
 
       .badge {
         font-size: 0.8rem;
-        padding: 0.2rem 0.5rem;
+        padding: 0.4rem 0.6rem;
       }
     }
   `]

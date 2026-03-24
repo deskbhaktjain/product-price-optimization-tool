@@ -99,13 +99,13 @@ import { AuthService } from '@app/core/services/auth.service';
   `,
   styles: [`
     .product-list-container {
-      animation: fadeIn 0.3s ease-in;
+      animation: slideInUp 0.4s ease-out;
     }
 
-    @keyframes fadeIn {
+    @keyframes slideInUp {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -117,66 +117,76 @@ import { AuthService } from '@app/core/services/auth.service';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: var(--spacing-3xl);
+      gap: var(--spacing-lg);
     }
 
     .list-header h1 {
-      font-size: 1.8rem;
-      color: #00BCD4;
+      font-size: var(--font-3xl);
+      background: linear-gradient(135deg, #26E0E0 0%, #00BCD4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin: 0;
     }
 
     .btn-add {
-      background-color: #00BCD4;
-      color: #2a2a2a;
+      background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 100%);
+      color: #1a1a1a;
       border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
       cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s;
+      font-weight: var(--font-semibold);
+      transition: all var(--transition-base);
+      box-shadow: var(--shadow-primary);
+      white-space: nowrap;
     }
 
     .btn-add:hover {
-      background-color: #80DEEA;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-primary-lg);
+      background: linear-gradient(135deg, #26E0E0 0%, #00BCD4 100%);
     }
 
     .filters {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-2xl);
       flex-wrap: wrap;
     }
 
     .search-input,
     .category-select {
-      padding: 0.75rem;
-      border: 1px solid #424242;
-      border-radius: 4px;
-      font-size: 1rem;
+      padding: var(--spacing-md);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: var(--font-base);
       flex: 1;
       min-width: 200px;
-      background-color: #363636;
-      color: #ffffff;
+      background-color: var(--card-background);
+      color: var(--text-primary);
+      transition: all var(--transition-base);
     }
 
     .search-input:focus,
     .category-select:focus {
       outline: none;
-      border-color: #00BCD4;
-      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+      background: linea-gradient(180deg, rgba(0, 188, 212, 0.05), transparent);
     }
 
     .search-input::placeholder {
-      color: #9E9E9E;
+      color: var(--text-tertiary);
     }
 
     .table-container {
-      background: #363636;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      overflow-x: auto;
-      border: 1px solid #424242;
+      background: var(--card-background);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: auto;
+      border: 1px solid var(--border-color);
     }
 
     .products-table {
@@ -185,37 +195,53 @@ import { AuthService } from '@app/core/services/auth.service';
     }
 
     .products-table th {
-      background-color: #2a2a2a;
-      color: #00BCD4;
-      padding: 1rem;
+      background: linear-gradient(90deg, rgba(0, 188, 212, 0.1), transparent);
+      color: #26E0E0;
+      padding: var(--spacing-lg);
       text-align: left;
       font-weight: 600;
-      border-bottom: 2px solid #424242;
+      font-size: var(--font-sm);
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--border-light);
       white-space: nowrap;
+      position: sticky;
+      top: 0;
     }
 
     .products-table td {
-      padding: 1rem;
-      border-bottom: 1px solid #424242;
-      color: #ffffff;
+      padding: var(--spacing-lg);
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: var(--font-base);
     }
 
-    .products-table tr:hover {
-      background-color: #2a2a2a;
+    .products-table tbody tr {
+      transition: all var(--transition-base);
+    }
+
+    .products-table tbody tr:hover {
+      background: rgba(0, 188, 212, 0.05);
+      border-bottom-color: rgba(0, 188, 212, 0.3);
+    }
+
+    .products-table tbody tr:last-child td {
+      border-bottom: none;
     }
 
     .rating {
-      background-color: #FF9800;
-      color: #2a2a2a;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 0.9rem;
+      background: linear-gradient(135deg, #FF9800, #FFB74D);
+      color: #1a1a1a;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-semibold);
+      font-size: var(--font-sm);
+      display: inline-block;
     }
 
     .actions {
       display: flex;
-      gap: 0.5rem;
+      gap: var(--spacing-md);
+      align-items: center;
     }
 
     .btn-view,
@@ -223,63 +249,82 @@ import { AuthService } from '@app/core/services/auth.service';
     .btn-delete {
       background: none;
       border: none;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       cursor: pointer;
-      transition: transform 0.2s;
-      padding: 0.25rem;
+      transition: all var(--transition-base);
+      padding: 0.25rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .btn-view:hover,
-    .btn-edit:hover,
+    .btn-view:hover {
+      transform: scale(1.2) translateY(-2px);
+      filter: drop-shadow(0 2px 4px rgba(0, 188, 212, 0.3));
+    }
+
+    .btn-edit:hover {
+      transform: scale(1.2) translateY(-2px);
+      filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3));
+    }
+
     .btn-delete:hover {
-      transform: scale(1.2);
+      transform: scale(1.2) translateY(-2px);
+      filter: drop-shadow(0 2px 4px rgba(244, 67, 54, 0.3));
     }
 
     .loading {
-      padding: 2rem;
+      padding: var(--spacing-3xl);
       text-align: center;
-      color: #B0BEC5;
+      color: var(--text-tertiary);
+      font-size: var(--font-base);
     }
 
     .pagination {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1rem;
-      margin-top: 2rem;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-2xl);
     }
 
     .btn-pagination {
-      background-color: #00BCD4;
-      color: #2a2a2a;
+      background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 100%);
+      color: #1a1a1a;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
       cursor: pointer;
-      transition: background-color 0.3s;
-      font-weight: 600;
+      transition: all var(--transition-base);
+      font-weight: var(--font-semibold);
+      font-size: var(--font-sm);
+      box-shadow: var(--shadow-primary);
     }
 
     .btn-pagination:hover:not(:disabled) {
-      background-color: #80DEEA;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-primary-lg);
+      background: linear-gradient(135deg, #26E0E0 0%, #00BCD4 100%);
     }
 
     .btn-pagination:disabled {
-      background-color: #616161;
+      background: var(--card-background);
+      color: var(--text-tertiary);
       cursor: not-allowed;
-      color: #9E9E9E;
+      border: 1.5px solid var(--border-color);
+      box-shadow: none;
     }
 
     .page-info {
-      color: #B0BEC5;
+      color: var(--text-secondary);
       font-weight: 600;
+      font-size: var(--font-base);
     }
 
     @media (max-width: 768px) {
       .list-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1rem;
       }
 
       .filters {
@@ -293,13 +338,13 @@ import { AuthService } from '@app/core/services/auth.service';
 
       .products-table th,
       .products-table td {
-        padding: 0.75rem 0.5rem;
+        padding: var(--spacing-md);
         font-size: 0.9rem;
       }
 
       .actions {
-        flex-direction: column;
-        gap: 0.25rem;
+        flex-direction: row;
+        gap: var(--spacing-sm);
       }
     }
   `]
